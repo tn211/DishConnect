@@ -1,0 +1,49 @@
+.public-profile-page .profile-img-wrapper {
+  width: 100px;
+  /* fixed width */
+  height: 100px;
+  /* fixed height to maintain uniformity */
+  position: relative;
+  overflow: hidden;
+  /* ensures excess parts of the image are not visible */
+  margin: auto;
+  border-radius: 50%;
+  /* rounded corners */
+}
+
+.public-profile-page .profile-img-wrapper img {
+  width: 100%;
+  /* ensures the image at least fills the width */
+  height: 100%;
+  /* ensures the image at least fills the height */
+  object-fit: cover;
+  /* covers the area, maintaining aspect ratio, cropping as necessary */
+  object-position: center;
+  /* centers the image in the container */
+}
+
+.public-profile-page {
+  opacity: 0.95;
+  background-color: white;
+  margin-top: -150px;
+  width: 100%;
+  padding: 50px;
+  padding-right: 60px;
+  border-radius: 70px;
+}
+
+@media only screen and (max-width: 768px) {
+  .public-profile-page {
+    opacity: 0.95;
+    background-color: white;
+    margin-top: -150px;
+    width: 100%;
+    padding: 50px;
+    padding-right: 50px;
+    border-radius: 70px;
+  }
+
+  .pppname {
+    font-size: large;
+  }
+}
