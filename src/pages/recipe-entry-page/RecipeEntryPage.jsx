@@ -115,7 +115,7 @@ const RecipeEntryPage = ({ session }) => {
   };
 
   const inputCls =
-    "w-full bg-[#0f0f0f] border border-white/15 rounded-lg px-3 py-2.5 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-orange-500/60 transition-colors";
+    "w-full bg-[#0f0f0f] border border-white/15 rounded-lg px-3 py-2.5 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-fuchsia-500/60 transition-colors";
   const labelCls =
     "block text-xs font-medium text-neutral-400 uppercase tracking-wider mb-1.5";
   const btnSecondary =
@@ -129,7 +129,7 @@ const RecipeEntryPage = ({ session }) => {
             Upload Recipe
           </h1>
           <p className="text-neutral-500 text-sm mb-8">
-            Share your dish with the community
+            Share your dish with the community.
           </p>
 
           <form
@@ -219,7 +219,7 @@ const RecipeEntryPage = ({ session }) => {
               <div className="flex flex-col gap-2 mb-2">
                 {steps.map((step, index) => (
                   <div key={index} className="flex gap-2 items-start">
-                    <span className="text-orange-400 text-sm font-medium pt-2.5 shrink-0">
+                    <span className="text-fuchsia-400 text-sm font-medium pt-2.5 shrink-0">
                       {index + 1}.
                     </span>
                     <textarea
@@ -318,7 +318,7 @@ const RecipeEntryPage = ({ session }) => {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full bg-orange-500 hover:bg-orange-400 disabled:bg-orange-500/40 text-white font-medium py-2.5 px-4 rounded-xl text-sm transition-colors border-0 mt-2"
+              className="w-full bg-fuchsia-500 hover:bg-fuchsia-400 disabled:bg-fuchsia-500/40 text-white font-medium py-2.5 px-4 rounded-xl text-sm transition-colors border-0 mt-2"
             >
               {submitting ? "Submitting…" : "Submit Recipe"}
             </button>

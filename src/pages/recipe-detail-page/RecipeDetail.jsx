@@ -13,18 +13,12 @@ const RecipeDetail = ({ session }) => {
   const [recipe, setRecipe] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
   const [loading, setLoading] = useState(true);
-  // const [averageRating, setAverageRating] = useState("Not yet rated");
+  const [averageRating, setAverageRating] = useState("");
   const [submitter, setSubmitter] = useState("Unknown");
   const [submitterId, setSubmitterId] = useState(null);
 
   const fetchRecipeAndComments = useCallback(async () => {
     setLoading(true);
-
-    if (!session || !session.user) {
-      console.error("User is not logged in");
-      setLoading(false);
-      return;
-    }
 
     try {
       const { data: recipeData, error: recipeError } = await supabase
@@ -54,13 +48,12 @@ const RecipeDetail = ({ session }) => {
 
       if (profileError) throw profileError;
       setSubmitter(profileData.username);
-
     } catch (error) {
       console.error("Error fetching data:", error.message);
     } finally {
       setLoading(false);
     }
-  }, [recipeId, session]);
+  }, [recipeId]);
 
   const checkFavorite = useCallback(async () => {
     if (session && session.user) {
@@ -109,7 +102,7 @@ const RecipeDetail = ({ session }) => {
   if (loading) {
     return (
       <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-fuchsia-500 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -126,15 +119,31 @@ const RecipeDetail = ({ session }) => {
     <Layout>
       <div className="min-h-[calc(100vh-4rem)] bg-[#0f0f0f]">
         <div className="max-w-3xl mx-auto px-4 py-10">
-          <h2 className="text-3xl font-semibold text-white mb-2 tracking-tight">
-            {recipe.title}
-          </h2>
+          <div className="flex items-start justify-between gap-4 mb-2">
+            <h2 className="pixel-ui text-3xl font-semibold text-white tracking-tight">
+              {recipe.title}
+            </h2>
+            <div className="flex flex-col items-end gap-2 shrink-0">
+              <FavoriteButton
+                recipeId={recipeId}
+                isFavorite={isFavorite}
+                setIsFavorite={setIsFavorite}
+                session={session}
+              />
+              {averageRating && (
+                <span className="text-neutral-500 text-sm">
+                  average rating:{" "}
+                  <span className="text-white">{averageRating}</span>
+                </span>
+              )}
+            </div>
+          </div>
           <p className="text-sm text-neutral-500 mb-1">
             Submitted by:{" "}
             {submitterId ? (
               <Link
                 to={`/chefs/${submitterId}`}
-                className="text-orange-400 hover:text-orange-300 transition-colors"
+                className="text-fuchsia-400 hover:text-fuchsia-300 transition-colors"
               >
                 {submitter}
               </Link>
@@ -170,23 +179,25 @@ const RecipeDetail = ({ session }) => {
             />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <div className="grid md:grid-cols-2 gap-6 mb-8 items-start">
             <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-5">
               <h3 className="text-neutral-400 font-medium mb-3 text-sm uppercase tracking-wider">
                 Ingredients
               </h3>
               <ul className="flex flex-col gap-2">
-                {recipe.ingredients.map((ingredient) => (
-                  <li
-                    key={ingredient.ingredient_id}
-                    className="flex items-start gap-2 text-sm text-neutral-300"
-                  >
-                    <span className="text-orange-400 mt-0.5">•</span>
-                    {ingredient.quantity}{" "}
-                    {ingredient.unit !== "whole" ? ingredient.unit + " " : ""}
-                    {ingredient.name}
-                  </li>
-                ))}
+                {recipe.ingredients
+                  .filter((ingredient) => ingredient.name?.trim())
+                  .map((ingredient) => (
+                    <li
+                      key={ingredient.ingredient_id}
+                      className="flex items-start gap-2 text-sm text-neutral-300"
+                    >
+                      <span className="text-fuchsia-400 mt-0.5">•</span>
+                      {ingredient.quantity}{" "}
+                      {ingredient.unit !== "whole" ? ingredient.unit + " " : ""}
+                      {ingredient.name}
+                    </li>
+                  ))}
               </ul>
             </div>
 
@@ -198,12 +209,13 @@ const RecipeDetail = ({ session }) => {
                 {recipe.steps &&
                   recipe.steps
                     .sort((a, b) => a.step_number - b.step_number)
+                    .filter((step) => step.instruction?.trim())
                     .map((step, i) => (
                       <li
                         key={step.step_id}
                         className="flex gap-3 text-sm text-neutral-300"
                       >
-                        <span className="text-orange-400 font-medium shrink-0">
+                        <span className="text-fuchsia-400 font-medium shrink-0">
                           {i + 1}.
                         </span>
                         {step.instruction}
@@ -214,13 +226,12 @@ const RecipeDetail = ({ session }) => {
           </div>
 
           <div className="flex gap-3 flex-wrap">
-            <FavoriteButton
+            <RatingButtons
               recipeId={recipeId}
-              isFavorite={isFavorite}
-              setIsFavorite={setIsFavorite}
               session={session}
+              showAverage={false}
+              onAverageRatingChange={setAverageRating}
             />
-            <RatingButtons recipeId={recipeId} session={session} />
           </div>
 
           <div className="mt-8">

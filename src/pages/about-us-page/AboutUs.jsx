@@ -7,18 +7,14 @@ const AboutUs = () => {
   return (
     <Layout>
       <div className="bg-[#0f0f0f] min-h-[calc(100vh-4rem)]">
-        <div className="max-w-5xl mx-auto px-4 py-16">
-          <div className="flex flex-col md:flex-row items-center gap-10 mb-20">
+        <div className="max-w-5xl mx-auto px-4 pt-10 pb-14">
+          <div className="flex flex-col md:flex-row items-center gap-10 mb-12">
             <div className="flex-1">
-              <h1 className="text-4xl font-semibold text-white mb-4 tracking-tight">
+              <h1 className="pixel-ui text-4xl font-semibold text-white mb-4 tracking-tight">
                 About Us
               </h1>
               <p className="text-neutral-400 leading-relaxed text-base">
-                We are a team passionate about cooking and all the cultural
-                diversity that it can provide and be expressed through it. This
-                love for sharing our experiences led us to create DishConnect, a
-                great community for every person, with or without experience, to
-                explore and contribute to this wonderful world of gastronomy.
+                We're a team of food obsessives who believe cooking is one of the most direct ways to experience other cultures. That belief became DishConnect, a community where anyone, seasoned cook or total beginner, can explore and share the flavors that make up our world.
               </p>
             </div>
             <div className="w-full md:w-80 h-64 rounded-2xl overflow-hidden border border-white/10 shrink-0">
@@ -32,14 +28,11 @@ const AboutUs = () => {
 
           <div className="flex flex-col md:flex-row-reverse items-center gap-10">
             <div className="flex-1">
-              <h2 className="text-3xl font-semibold text-white mb-4 tracking-tight">
+              <h2 className="pixel-ui text-3xl font-semibold text-white mb-4 tracking-tight">
                 Our Mission
               </h2>
               <p className="text-neutral-400 leading-relaxed text-base">
-                Our mission is to create the most diverse and friendly culinary
-                community, empowering people from all over the world to share,
-                explore and enjoy recipes from every corner of the planet,
-                promoting the exchange of knowledge and experiences.
+                We are building the most diverse and welcoming culinary community on the planet, giving people everywhere a place to share recipes, swap techniques, and connect over the food that shaped them.
               </p>
             </div>
             <div className="w-full md:w-80 h-64 rounded-2xl overflow-hidden border border-white/10 shrink-0">

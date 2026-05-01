@@ -2,8 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Pixeled";
+  src: url("./assets/fonts/Pixeled.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pix32";
+  src: url("./assets/fonts/Pix32.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CarosSoftThin";
+  src: url("./assets/fonts/CarosSoftThin.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CarosMedium";
+  src: url("./assets/fonts/cretype  Caros Medium.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --display-font: "Pix32", system-ui, sans-serif;
+  --body-font: "CarosMedium", Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-family: var(--body-font);
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark;
@@ -22,7 +57,7 @@ body {
   background-color: #0f0f0f;
   color: #e5e5e5;
   overflow-x: hidden;
-  font-family: "Inter", sans-serif;
+  font-family: var(--body-font);
 }
 
 a {
@@ -32,7 +67,15 @@ a {
 }
 
 a:hover {
-  color: #f97316;
+  color: #e879f9;
+}
+
+.brand-wordmark {
+  font-family: var(--display-font);
+}
+
+.pixel-ui {
+  font-family: var(--display-font);
 }
 
 h1 {
@@ -46,7 +89,7 @@ button {
   padding: 0.5em 1.1em;
   font-size: 0.95em;
   font-weight: 500;
-  font-family: inherit;
+  font-family: var(--display-font);
   cursor: pointer;
   transition: all 0.2s;
 }

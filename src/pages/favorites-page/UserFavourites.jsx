@@ -66,16 +66,16 @@ const UserFavouritesPage = ({ session }) => {
   return (
     <Layout>
       <div className="min-h-[calc(100vh-4rem)] bg-[#0f0f0f] px-4 py-10 max-w-5xl mx-auto">
-        <h1 className="text-3xl font-semibold text-white mb-1 tracking-tight">
+        <h1 className="pixel-ui text-3xl font-semibold text-white mb-1 tracking-tight">
           My Favourites
         </h1>
         <p className="text-neutral-500 text-sm mb-8">
-          Recipes you&apos;ve saved
+          Recipes you&apos;ve saved.
         </p>
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-fuchsia-500 border-t-transparent rounded-full animate-spin" />
           </div>
         ) : favouriteRecipes.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">

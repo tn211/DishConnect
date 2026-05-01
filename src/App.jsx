@@ -1,6 +1,11 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
 import { supabase } from "./supabaseClient";
 import Auth from "./Auth";
 import Account from "./pages/account-page/Account";
@@ -28,116 +33,72 @@ function App() {
     });
   }, []);
 
+  const requireAuth = (element) => {
+    return session ? element : <Navigate to="/login" replace />;
+  };
+
   return (
-    <div>
-      {!session ? (
-        <Auth />
-      ) : (
-        <Router>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <SearchPage
-                  key={session.user.id}
-                  session={session}
-                  supabase={supabase}
-                />
-              }
-            />
-            <Route
-              path="/my-recipes"
-              element={
-                <UserRecipesPage
-                  key={session.user.id}
-                  session={session}
-                  supabase={supabase}
-                />
-              }
-            />
-            <Route
-              path="/favourites"
-              element={
-                <UserFavouritesPage
-                  key={session.user.id}
-                  session={session}
-                  supabase={supabase}
-                />
-              }
-            />
-            <Route
-              path="/recipes/:recipeId"
-              element={
-                <RecipeDetail
-                  key={session.user.id}
-                  session={session}
-                  supabase={supabase}
-                />
-              }
-            />
-            <Route
-              path="/chefs/:id"
-              element={
-                <PublicProfilePage
-                  key={session.user.id}
-                  session={session}
-                  supabase={supabase}
-                />
-              }
-            />
-            <Route
-              path="/recent-recipes"
-              element={
-                <RecentRecipesPage
-                  key={session.user.id}
-                  session={session}
-                  supabase={supabase}
-                />
-              }
-            />
-            <Route
-              path="/add-recipe"
-              element={
-                <RecipeEntryPage
-                  key={session.user.id}
-                  session={session}
-                  supabase={supabase}
-                />
-              }
-            />
-            <Route
-              path="/search"
-              element={
-                <SearchPage
-                  key={session.user.id}
-                  session={session}
-                  supabase={supabase}
-                />
-              }
-            />
-            <Route path="/search-results" element={<SearchResultsPage />} />
-            <Route
-              path="/following"
-              element={
-                <FollowingPage
-                  key={session.user.id}
-                  session={session}
-                  supabase={supabase}
-                />
-              }
-            />
-            <Route
-              path="/account"
-              element={<Account key={session.user.id} session={session} />}
-            />
-            <Route
-              path="/about-us"
-              element={<AboutUs key={session.user.id} session={session} />}
-            />
-          </Routes>
-        </Router>
-      )}
-    </div>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={<SearchPage session={session} supabase={supabase} />}
+        />
+        <Route
+          path="/search"
+          element={<SearchPage session={session} supabase={supabase} />}
+        />
+        <Route
+          path="/search-results"
+          element={<SearchResultsPage session={session} supabase={supabase} />}
+        />
+        <Route
+          path="/recipes/:recipeId"
+          element={<RecipeDetail session={session} supabase={supabase} />}
+        />
+        <Route
+          path="/chefs/:id"
+          element={<PublicProfilePage session={session} supabase={supabase} />}
+        />
+        <Route
+          path="/recent-recipes"
+          element={<RecentRecipesPage session={session} supabase={supabase} />}
+        />
+        <Route
+          path="/about-us"
+          element={<AboutUs session={session} supabase={supabase} />}
+        />
+        <Route path="/login" element={<Auth />} />
+        <Route
+          path="/my-recipes"
+          element={requireAuth(
+            <UserRecipesPage session={session} supabase={supabase} />,
+          )}
+        />
+        <Route
+          path="/favourites"
+          element={requireAuth(
+            <UserFavouritesPage session={session} supabase={supabase} />,
+          )}
+        />
+        <Route
+          path="/add-recipe"
+          element={requireAuth(
+            <RecipeEntryPage session={session} supabase={supabase} />,
+          )}
+        />
+        <Route
+          path="/following"
+          element={requireAuth(
+            <FollowingPage session={session} supabase={supabase} />,
+          )}
+        />
+        <Route
+          path="/account"
+          element={requireAuth(<Account session={session} />)}
+        />
+      </Routes>
+    </Router>
   );
 }
 

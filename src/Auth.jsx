@@ -58,13 +58,13 @@ export default function Auth() {
                   value={email}
                   required
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-[#0f0f0f] border border-white/15 rounded-lg px-4 py-2.5 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-orange-500/60 transition-colors"
+                  className="w-full bg-[#0f0f0f] border border-white/15 rounded-lg px-4 py-2.5 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-fuchsia-500/60 transition-colors"
                 />
               </div>
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-orange-500 hover:bg-orange-400 disabled:bg-orange-500/40 text-white font-medium py-2.5 px-4 rounded-lg text-sm transition-colors"
+                className="w-full bg-fuchsia-500 hover:bg-fuchsia-400 disabled:bg-fuchsia-500/40 text-white font-medium py-2.5 px-4 rounded-lg text-sm transition-colors"
               >
                 {loading ? "Sending…" : "Send magic link"}
               </button>

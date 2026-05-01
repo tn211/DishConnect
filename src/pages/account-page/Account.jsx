@@ -81,7 +81,7 @@ export default function Account({ session }) {
   }
 
   const inputCls =
-    "w-full bg-[#0f0f0f] border border-white/15 rounded-lg px-3 py-2.5 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-orange-500/60 transition-colors disabled:text-neutral-600";
+    "w-full bg-[#0f0f0f] border border-white/15 rounded-lg px-3 py-2.5 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-fuchsia-500/60 transition-colors disabled:text-neutral-600";
   const labelCls =
     "block text-xs font-medium text-neutral-400 uppercase tracking-wider mb-1.5";
 
@@ -89,10 +89,10 @@ export default function Account({ session }) {
     <Layout>
       <div className="min-h-[calc(100vh-4rem)] bg-[#0f0f0f] px-4 py-10">
         <div className="max-w-md mx-auto">
-          <h1 className="text-3xl font-semibold text-white mb-1 tracking-tight">
+          <h1 className="pixel-ui text-3xl font-semibold text-white mb-1 tracking-tight">
             Account
           </h1>
-          <p className="text-neutral-500 text-sm mb-8">Manage your profile</p>
+          <p className="text-neutral-500 text-sm mb-8">Manage your profile.</p>
 
           <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-6 flex flex-col gap-5">
             <div className="flex justify-center">
@@ -146,7 +146,7 @@ export default function Account({ session }) {
               type="submit"
               onClick={updateProfile}
               disabled={loading}
-              className="w-full bg-orange-500 hover:bg-orange-400 disabled:bg-orange-500/40 text-white font-medium py-2.5 px-4 rounded-xl text-sm transition-colors border-0"
+              className="w-full bg-fuchsia-500 hover:bg-fuchsia-400 disabled:bg-fuchsia-500/40 text-white font-medium py-2.5 px-4 rounded-xl text-sm transition-colors border-0"
             >
               {loading ? "Saving…" : "Update Profile"}
             </button>

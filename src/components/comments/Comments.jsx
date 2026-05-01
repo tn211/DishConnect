@@ -1,5 +1,27 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
+import { HiUserCircle } from "react-icons/hi2";
+
+const CommentAvatar = ({ avatarPath }) => {
+  const [url, setUrl] = useState(null);
+
+  useEffect(() => {
+    if (!avatarPath) return;
+    supabase.storage
+      .from("avatars")
+      .download(avatarPath)
+      .then(({ data }) => {
+        if (data) setUrl(URL.createObjectURL(data));
+      });
+  }, [avatarPath]);
+
+  return url ? (
+    <img src={url} alt="avatar" className="w-8 h-8 rounded-full object-cover border border-white/20 shrink-0" />
+  ) : (
+    <HiUserCircle className="w-8 h-8 text-neutral-600 shrink-0" />
+  );
+};
 
 const Comments = ({ recipeId, session }) => {
   const [comments, setComments] = useState([]);
@@ -11,7 +33,7 @@ const Comments = ({ recipeId, session }) => {
       .select(
         `
                 *,
-                user_id!inner(username)
+                user_id!inner(id, username, avatar_url)
             `,
       )
       .eq("slug", recipeId);
@@ -68,23 +90,31 @@ const Comments = ({ recipeId, session }) => {
           {comments.map((comment, index) => (
             <li
               key={index}
-              className="bg-[#1a1a1a] border border-white/10 rounded-xl p-4"
+              className="bg-[#1a1a1a] border border-white/10 rounded-xl p-4 flex gap-3"
             >
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-orange-400 text-sm font-medium">
-                  {comment.user_id.username}
-                </span>
-                <span className="text-neutral-600 text-xs">
-                  {new Date(comment.created_at).toLocaleDateString(undefined, {
-                    month: "short",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </span>
+              <Link to={`/chefs/${comment.user_id.id}`}>
+                <CommentAvatar avatarPath={comment.user_id.avatar_url} />
+              </Link>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between mb-1">
+                  <Link
+                    to={`/chefs/${comment.user_id.id}`}
+                    className="text-fuchsia-400 text-sm font-medium hover:text-fuchsia-300 transition-colors"
+                  >
+                    {comment.user_id.username}
+                  </Link>
+                  <span className="text-neutral-600 text-xs shrink-0 ml-2">
+                    {new Date(comment.created_at).toLocaleDateString(undefined, {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </span>
+                </div>
+                <p className="text-neutral-300 text-sm leading-relaxed">
+                  {comment.body}
+                </p>
               </div>
-              <p className="text-neutral-300 text-sm leading-relaxed">
-                {comment.body}
-              </p>
             </li>
           ))}
         </ul>
@@ -100,11 +130,11 @@ const Comments = ({ recipeId, session }) => {
           onChange={handleCommentChange}
           placeholder="Write a comment…"
           required
-          className="w-full bg-[#1a1a1a] border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-orange-500/60 transition-colors resize-none h-20"
+          className="w-full bg-[#1a1a1a] border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-fuchsia-500/60 transition-colors resize-none h-20"
         />
         <button
           type="submit"
-          className="self-end px-5 py-2 bg-orange-500 hover:bg-orange-400 text-white text-sm font-medium rounded-lg transition-colors border-0"
+          className="self-end px-5 py-2 bg-fuchsia-500 hover:bg-fuchsia-400 text-white text-sm font-medium rounded-lg transition-colors border-0"
         >
           Post Comment
         </button>

@@ -86,7 +86,7 @@ const PublicProfilePage = ({ session }) => {
       <div className="min-h-[calc(100vh-4rem)] bg-[#0f0f0f] px-4 py-10 max-w-5xl mx-auto">
         {loading && !user ? (
           <div className="flex items-center justify-center py-20">
-            <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-fuchsia-500 border-t-transparent rounded-full animate-spin" />
           </div>
         ) : (
           user && (
@@ -112,7 +112,7 @@ const PublicProfilePage = ({ session }) => {
                     className={`mt-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-colors border ${
                       isFollowing
                         ? "border-white/20 text-neutral-400 hover:text-red-400 hover:border-red-400/30 bg-transparent"
-                        : "bg-orange-500 hover:bg-orange-400 text-white border-transparent"
+                        : "bg-fuchsia-500 hover:bg-fuchsia-400 text-white border-transparent"
                     }`}
                   >
                     {isFollowing ? "Unfollow" : "Follow"}
@@ -125,7 +125,7 @@ const PublicProfilePage = ({ session }) => {
                 <RecipesList supabase={supabase} userId={id} />
               ) : (
                 <div className="flex items-center justify-center py-10">
-                  <div className="w-6 h-6 border-2 border-orange-500 border-t-transparent rounded-full animate-spin" />
+                  <div className="w-6 h-6 border-2 border-fuchsia-500 border-t-transparent rounded-full animate-spin" />
                 </div>
               )}
             </>
