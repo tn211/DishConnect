@@ -28,7 +28,7 @@ export default function Auth() {
             DishConnect
           </h1>
           <p className="text-neutral-500 text-sm mt-1">
-            Sign in to your account
+            Sign in to your account.
           </p>
         </div>
 
@@ -36,7 +36,7 @@ export default function Auth() {
           {sent ? (
             <div className="text-center">
               <div className="text-3xl mb-3">✉️</div>
-              <p className="text-white font-medium mb-1">Check your email</p>
+              <p className="text-white font-medium mb-1">Check your email.</p>
               <p className="text-neutral-400 text-sm">
                 We sent a magic link to{" "}
                 <span className="text-white">{email}</span>
