@@ -125,7 +125,7 @@ const RecipeEntryPage = ({ session }) => {
     <Layout>
       <div className="min-h-[calc(100vh-4rem)] bg-[#0f0f0f] px-4 py-10">
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-3xl font-semibold text-white mb-1 tracking-tight">
+          <h1 className="pixel-ui text-3xl font-semibold text-white mb-1 tracking-tight">
             Upload Recipe
           </h1>
           <p className="text-neutral-500 text-sm mb-8">
