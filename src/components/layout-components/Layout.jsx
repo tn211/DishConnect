@@ -66,7 +66,7 @@ const Layout = ({ children }) => {
         <div className="w-full px-5 sm:px-7 h-16 flex items-center">
           <Link to="/" className="flex items-center gap-2 shrink-0">
             <img src={minilogo} alt="DishConnect" className="h-8 w-auto" />
-            <span className="brand-wordmark text-white text-[14px] tracking-tight hidden sm:block">
+            <span className="brand-wordmark text-white text-[14px] tracking-tight">
               DishConnect
             </span>
           </Link>
