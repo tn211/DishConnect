@@ -6,18 +6,18 @@ DishConnect is a community recipe-sharing web app where users can discover recip
 
 ## Features
 
-- **Recipe discovery:** Search and browse community recipes.
-- **Recipe uploads:** Share recipes with images, ingredients, steps, and cooking times.
-- **User accounts:** Sign in and manage personal recipe activity.
-- **Favourites:** Save recipes to revisit later.
-- **Responsive design:** Built for desktop and mobile browsing.
+- **Recipe discovery ➜** Search and browse community recipes.
+- **Recipe uploads ➜** Share recipes with images, ingredients, steps, and cooking times.
+- **User accounts ➜** Sign in and manage personal recipe activity.
+- **Favourites ➜** Save recipes to revisit later.
+- **Responsive design ➜** Built for desktop and mobile browsing.
 
 ## Tech Stack
 
-- **Frontend:** React, Vite, Tailwind CSS
-- **Routing:** React Router
-- **Backend services:** Supabase
-- **Deployment:** Vercel
+- **Frontend ➜** React, Vite, Tailwind CSS
+- **Routing ➜** React Router
+- **Backend services ➜** Supabase
+- **CI/CD ➜** Vercel
 
 ## Getting Started
 
