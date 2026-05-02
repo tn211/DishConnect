@@ -63,15 +63,15 @@ const Layout = ({ children }) => {
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-[#e5e5e5] flex flex-col">
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#0f0f0f]/90 backdrop-blur-md border-b border-white/10">
-        <div className="w-full px-5 sm:px-7 h-16 flex items-center">
-          <Link to="/" className="flex items-center gap-2 shrink-0">
-            <img src={minilogo} alt="DishConnect" className="h-8 w-auto" />
-            <span className="brand-wordmark text-white text-[14px] tracking-tight">
+        <div className="w-full px-5 sm:px-7 h-16 md:h-20 flex items-center">
+          <Link to="/" className="flex items-center gap-2.5 shrink-0">
+            <img src={minilogo} alt="DishConnect" className="h-8 md:h-10 w-auto" />
+            <span className="brand-wordmark text-white text-[14px] md:text-[17px] tracking-tight">
               DishConnect
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-5 ml-12">
+          <nav className="hidden md:flex items-center gap-6 ml-14">
             {navLinks.map(({ to, label }) => (
               <Link
                 key={to}
@@ -93,13 +93,13 @@ const Layout = ({ children }) => {
                 <div className="hidden md:flex items-center gap-2">
                   <Link
                     to="/my-recipes"
-                    className="pixel-ui text-neutral-400 hover:text-white text-[10px] font-medium px-3 py-2 rounded-lg transition-colors"
+                    className="pixel-ui text-neutral-400 hover:text-white text-[12px] font-medium px-4 py-2.5 rounded-lg transition-colors"
                   >
                     My Recipes
                   </Link>
                   <Link
                     to="/add-recipe"
-                    className="pixel-ui bg-fuchsia-500 hover:bg-fuchsia-400 text-white text-[10px] font-medium px-4 py-2 rounded-lg transition-colors"
+                    className="pixel-ui bg-fuchsia-500 hover:bg-fuchsia-400 text-white text-[12px] font-medium px-5 py-2.5 rounded-lg transition-colors"
                   >
                     Upload
                   </Link>
@@ -112,10 +112,10 @@ const Layout = ({ children }) => {
                     <img
                       src={avatarUrl}
                       alt="avatar"
-                      className="w-7 h-7 rounded-full object-cover border border-white/20"
+                      className="w-7 h-7 md:w-9 md:h-9 rounded-full object-cover border border-white/20"
                     />
                   ) : (
-                    <HiUserCircle className="w-7 h-7" />
+                    <HiUserCircle className="w-7 h-7 md:w-9 md:h-9" />
                   )}
                 </Link>
               </>
@@ -205,7 +205,7 @@ const Layout = ({ children }) => {
         )}
       </header>
 
-      <main className="flex-1 pt-16">{children}</main>
+      <main className="flex-1 pt-16 md:pt-20">{children}</main>
 
       <footer className="border-t border-white/10 py-4 text-center text-xs text-neutral-500">
         DishConnect © 2026. All rights reserved.
