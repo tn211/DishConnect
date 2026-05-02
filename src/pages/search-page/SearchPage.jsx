@@ -125,18 +125,18 @@ const SearchPage = () => {
               </p>
 
               <div className="bg-[#171717] border border-white/10 rounded-2xl p-3 shadow-2xl shadow-black/30 max-w-2xl">
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex flex-row gap-3">
                   <input
                     type="text"
                     placeholder="Search chicken, soup, pasta…"
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onKeyPress={handleKeyPress}
                     defaultValue={query}
-                    className="flex-1 h-12 px-4 rounded-xl border border-white/10 bg-[#0f0f0f] text-white text-sm placeholder-neutral-600 focus:outline-none focus:border-fuchsia-500/60 transition-colors"
+                    className="min-w-0 flex-1 h-12 px-4 rounded-xl border border-white/10 bg-[#0f0f0f] text-white text-sm placeholder-neutral-600 focus:outline-none focus:border-fuchsia-500/60 transition-colors"
                   />
                   <button
                     onClick={handleSearch}
-                    className="px-6 h-12 bg-fuchsia-500 hover:bg-fuchsia-400 text-white text-sm font-medium rounded-xl transition-colors border-0"
+                    className="shrink-0 px-6 h-12 bg-fuchsia-500 hover:bg-fuchsia-400 text-white text-sm font-medium rounded-xl transition-colors border-0"
                   >
                     Search
                   </button>
