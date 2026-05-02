@@ -85,7 +85,7 @@ const RecentRecipesPage = () => {
                   key={`${recipe.recipe_id}-${index}`}
                   className="group bg-[#1a1a1a] border border-white/10 rounded-2xl overflow-hidden hover:border-white/25 transition-all"
                 >
-                  <div className="aspect-video w-full overflow-hidden">
+                  <div className="h-56 sm:h-64 w-full overflow-hidden">
                     <img
                       src={
                         recipe.image_url

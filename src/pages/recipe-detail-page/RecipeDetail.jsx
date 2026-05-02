@@ -167,7 +167,7 @@ const RecipeDetail = ({ session }) => {
             </p>
           )}
 
-          <div className="w-full rounded-2xl overflow-hidden mb-8 aspect-video">
+          <div className="w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden mb-8">
             <img
               src={
                 recipe.image_url
