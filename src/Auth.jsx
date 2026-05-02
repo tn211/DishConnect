@@ -24,7 +24,7 @@ export default function Auth() {
       <div className="w-full max-w-sm">
         <div className="flex flex-col items-center mb-8">
           <img src={minilogo} alt="DishConnect" className="h-12 w-auto mb-4" />
-          <h1 className="text-2xl font-semibold text-white tracking-tight">
+          <h1 className="pixel-ui text-2xl font-semibold text-white tracking-tight">
             DishConnect
           </h1>
           <p className="text-neutral-500 text-sm mt-1">
