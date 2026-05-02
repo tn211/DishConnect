@@ -110,21 +110,21 @@ const SearchPage = () => {
   return (
     <Layout>
       <div className="min-h-[calc(100vh-4rem)] bg-[#0f0f0f] overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 pt-8 pb-14 lg:pt-12 lg:pb-20">
-          <section className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
+        <div className="max-w-7xl mx-auto px-4 pt-8 pb-14 lg:pt-14 lg:pb-24">
+          <section className="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 xl:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-fuchsia-500/25 bg-fuchsia-500/10 px-3 py-1 text-xs font-medium text-fuchsia-300 mb-6">
+              <div className="inline-flex items-center gap-2 rounded-full border border-fuchsia-500/25 bg-fuchsia-500/10 px-3 py-1 lg:px-4 lg:py-1.5 text-xs lg:text-sm font-medium text-fuchsia-300 mb-6">
                 Discover. Cook. Share.
               </div>
-              <h1 className="pixel-ui max-w-[560px] text-[2.45rem] sm:text-[3rem] lg:text-[3.35rem] text-white tracking-normal leading-[1.18] mb-5">
+              <h1 className="pixel-ui max-w-[640px] text-[2.45rem] sm:text-[3rem] lg:text-[4.1rem] xl:text-[4.45rem] text-white tracking-normal leading-[1.14] mb-5">
                 Find your next favourite recipe.
               </h1>
-              <p className="text-neutral-400 text-lg leading-relaxed max-w-xl mb-8">
+              <p className="text-neutral-400 text-lg lg:text-xl leading-relaxed max-w-2xl mb-8">
                 Browse community recipes, save dishes you love, and share your
                 own kitchen wins with DishConnect.
               </p>
 
-              <div className="bg-[#171717] border border-white/10 rounded-2xl p-3 shadow-2xl shadow-black/30 max-w-2xl">
+              <div className="bg-[#171717] border border-white/10 rounded-2xl p-3 lg:p-4 shadow-2xl shadow-black/30 max-w-2xl">
                 <div className="flex flex-row gap-3">
                   <input
                     type="text"
@@ -132,11 +132,11 @@ const SearchPage = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onKeyPress={handleKeyPress}
                     defaultValue={query}
-                    className="min-w-0 flex-1 h-12 px-4 rounded-xl border border-white/10 bg-[#0f0f0f] text-white text-sm placeholder-neutral-600 focus:outline-none focus:border-fuchsia-500/60 transition-colors"
+                    className="min-w-0 flex-1 h-12 lg:h-14 px-4 lg:px-5 rounded-xl border border-white/10 bg-[#0f0f0f] text-white text-sm lg:text-base placeholder-neutral-600 focus:outline-none focus:border-fuchsia-500/60 transition-colors"
                   />
                   <button
                     onClick={handleSearch}
-                    className="shrink-0 px-6 h-12 bg-fuchsia-500 hover:bg-fuchsia-400 text-white text-sm font-medium rounded-xl transition-colors border-0"
+                    className="shrink-0 px-6 lg:px-8 h-12 lg:h-14 bg-fuchsia-500 hover:bg-fuchsia-400 text-white text-sm lg:text-base font-medium rounded-xl transition-colors border-0"
                   >
                     Search
                   </button>
@@ -144,33 +144,33 @@ const SearchPage = () => {
               </div>
 
               <div className="flex flex-wrap items-center gap-2 mt-5">
-                <span className="text-neutral-600 text-sm">Popular:</span>
+                <span className="text-neutral-600 text-sm lg:text-base">Popular:</span>
                 {popularSearches.map((term) => (
                   <button
                     key={term}
                     onClick={() => navigate(`/search-results?query=${term}`)}
-                    className="bg-white/5 hover:bg-white/10 border border-white/10 text-neutral-300 hover:text-white text-xs px-3 py-1.5 rounded-full transition-colors"
+                    className="bg-white/5 hover:bg-white/10 border border-white/10 text-neutral-300 hover:text-white text-xs lg:text-sm px-3 lg:px-4 py-1.5 lg:py-2 rounded-full transition-colors"
                   >
                     {term}
                   </button>
                 ))}
               </div>
 
-              <div className="flex flex-wrap gap-6 mt-9 text-sm">
+              <div className="flex flex-wrap gap-6 lg:gap-9 mt-9 lg:mt-10 text-sm lg:text-base">
                 <div>
-                  <p className="pixel-ui text-2xl font-semibold text-white">
+                  <p className="pixel-ui text-2xl lg:text-3xl font-semibold text-white">
                     Millions
                   </p>
                    <p className="text-neutral-500">of Community recipes</p>
                 </div>
                 <div>
-                  <p className="pixel-ui text-2xl font-semibold text-white">
+                  <p className="pixel-ui text-2xl lg:text-3xl font-semibold text-white">
                     Global
                   </p>
                   <p className="text-neutral-500">Home-cooked flavours</p>
                 </div>
                 <div>
-                  <p className="pixel-ui text-2xl font-semibold text-white">
+                  <p className="pixel-ui text-2xl lg:text-3xl font-semibold text-white">
                     Free
                   </p>
                   <p className="text-neutral-500">to Browse and discover</p>
@@ -191,7 +191,7 @@ const SearchPage = () => {
                 <img
                   src={getFullImageUrl(activeHeroRecipe?.image_url)}
                   alt={activeHeroRecipe?.title || "Featured recipe"}
-                  className="h-[430px] w-full object-cover rounded-[1.5rem]"
+                  className="h-[460px] xl:h-[500px] w-full object-cover rounded-[1.5rem]"
                 />
                 {heroRecipes.length > 1 && (
                   <>

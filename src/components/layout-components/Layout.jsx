@@ -76,7 +76,7 @@ const Layout = ({ children }) => {
               <Link
                 key={to}
                 to={to}
-                className={`pixel-ui px-3 py-2 rounded-md text-[10px] font-medium transition-colors ${
+                className={`pixel-ui px-4 py-2.5 rounded-md text-[12px] font-medium transition-colors ${
                   location.pathname === to
                     ? "text-white bg-white/10"
                     : "text-neutral-400 hover:text-white hover:bg-white/5"
@@ -123,13 +123,13 @@ const Layout = ({ children }) => {
               <div className="hidden md:flex items-center gap-2">
                 <Link
                   to="/login"
-                  className="pixel-ui text-neutral-400 hover:text-white text-[10px] font-medium px-3 py-2 rounded-lg transition-colors"
+                  className="pixel-ui text-neutral-400 hover:text-white text-[12px] font-medium px-4 py-2.5 rounded-lg transition-colors"
                 >
                   Log In
                 </Link>
                 <Link
                   to="/login"
-                  className="pixel-ui bg-fuchsia-500 hover:bg-fuchsia-400 text-white text-[10px] font-medium px-4 py-2 rounded-lg transition-colors"
+                  className="pixel-ui bg-fuchsia-500 hover:bg-fuchsia-400 text-white text-[12px] font-medium px-5 py-2.5 rounded-lg transition-colors"
                 >
                   Sign Up
                 </Link>
