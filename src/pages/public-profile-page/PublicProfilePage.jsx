@@ -12,12 +12,34 @@ const PublicProfilePage = ({ session }) => {
   const [avatarUrl, setAvatarUrl] = useState("");
   const [isFollowing, setIsFollowing] = useState(false);
 
+  const getLastOnlineText = (lastSeenAt) => {
+    if (!lastSeenAt) return "Last online unknown";
+
+    const diffInMinutes = Math.floor(
+      (Date.now() - new Date(lastSeenAt).getTime()) / 60000,
+    );
+
+    if (diffInMinutes < 5) return "Online recently";
+    if (diffInMinutes < 60) return `Last online ${diffInMinutes} minutes ago`;
+
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    if (diffInHours < 24) {
+      return `Last online ${diffInHours} ${
+        diffInHours === 1 ? "hour" : "hours"
+      } ago`;
+    }
+
+    const diffInDays = Math.floor(diffInHours / 24);
+    if (diffInDays === 1) return "Last online yesterday";
+    return `Last online ${diffInDays} days ago`;
+  };
+
   const fetchUserProfile = useCallback(async () => {
     setLoading(true);
 
     const { data: userData, error: userError } = await supabase
       .from("profiles")
-      .select("username, avatar_url")
+      .select("username, avatar_url, last_seen_at")
       .eq("id", id)
       .single();
 
@@ -107,6 +129,9 @@ const PublicProfilePage = ({ session }) => {
                   <h1 className="text-2xl font-semibold text-white tracking-tight">
                     {user.username}
                   </h1>
+                  <p className="text-neutral-500 text-sm mt-1">
+                    {getLastOnlineText(user.last_seen_at)}
+                  </p>
                   <button
                     onClick={toggleFollow}
                     className={`mt-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-colors border ${

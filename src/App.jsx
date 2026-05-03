@@ -28,10 +28,29 @@ function App() {
       setSession(session);
     });
 
-    supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
+
+    return () => subscription.unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (!session?.user) return;
+
+    const updateLastSeen = async () => {
+      const { error } = await supabase
+        .from("profiles")
+        .update({ last_seen_at: new Date().toISOString() })
+        .eq("id", session.user.id);
+
+      if (error) console.error("Error updating last seen:", error);
+    };
+
+    updateLastSeen();
+  }, [session]);
 
   const requireAuth = (element) => {
     return session ? element : <Navigate to="/login" replace />;
