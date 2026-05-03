@@ -37,18 +37,33 @@ const PublicProfilePage = ({ session }) => {
   const fetchUserProfile = useCallback(async () => {
     setLoading(true);
 
-    const { data: userData, error: userError } = await supabase
+    let { data: userData, error: userError } = await supabase
       .from("profiles")
       .select("username, avatar_url, last_seen_at")
       .eq("id", id)
       .single();
 
     if (userError) {
+      const fallbackResponse = await supabase
+        .from("profiles")
+        .select("username, avatar_url")
+        .eq("id", id)
+        .single();
+
+      userData = fallbackResponse.data;
+      userError = fallbackResponse.error;
+    }
+
+    if (userError) {
       console.error("Error fetching user data:", userError);
+      setUser(null);
+      setAvatarUrl("");
+      setLoading(false);
+      return;
     }
 
     setUser(userData);
-    setAvatarUrl(userData.avatar_url); // Set the avatar URL
+    setAvatarUrl(userData?.avatar_url || ""); // Set the avatar URL
     setLoading(false);
   }, [id]);
 
@@ -110,9 +125,8 @@ const PublicProfilePage = ({ session }) => {
           <div className="flex items-center justify-center py-20">
             <div className="w-8 h-8 border-2 border-fuchsia-500 border-t-transparent rounded-full animate-spin" />
           </div>
-        ) : (
-          user && (
-            <>
+        ) : user ? (
+          <>
               <div className="flex items-center gap-5 mb-8">
                 <div className="w-20 h-20 rounded-full overflow-hidden border border-white/10 shrink-0">
                   <img
@@ -153,8 +167,9 @@ const PublicProfilePage = ({ session }) => {
                   <div className="w-6 h-6 border-2 border-fuchsia-500 border-t-transparent rounded-full animate-spin" />
                 </div>
               )}
-            </>
-          )
+          </>
+        ) : (
+          <p className="text-neutral-500 text-sm">Profile could not be loaded.</p>
         )}
       </div>
     </Layout>
