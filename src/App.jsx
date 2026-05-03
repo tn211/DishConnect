@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -22,7 +22,6 @@ import SearchResultsPage from "./pages/search-page/SearchResultsPage";
 
 function App() {
   const [session, setSession] = useState(null);
-  const lastSeenUpdatedForUser = useRef(null);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -37,27 +36,6 @@ function App() {
 
     return () => subscription.unsubscribe();
   }, []);
-
-  useEffect(() => {
-    if (!session?.user) return;
-    if (lastSeenUpdatedForUser.current === session.user.id) return;
-
-    const updateLastSeen = async () => {
-      const { error } = await supabase
-        .from("profiles")
-        .update({ last_seen_at: new Date().toISOString() })
-        .eq("id", session.user.id);
-
-      if (error) {
-        console.error("Error updating last seen. Make sure profiles.last_seen_at exists:", error);
-        return;
-      }
-
-      lastSeenUpdatedForUser.current = session.user.id;
-    };
-
-    updateLastSeen();
-  }, [session]);
 
   const requireAuth = (element) => {
     return session ? element : <Navigate to="/login" replace />;
